@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>ThirtyTwo Coffee · Take Order</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container" id="app">
+      <div class="brand-header">
+        <img src="./assets/logo.jpeg" alt="ThirtyTwo Coffee" class="brand-logo" />
+        <div>
+          <h1>THIRTYTWO COFFEE</h1>
+          <div class="sub">specialty coffee · order for pickup</div>
+        </div>
+      </div>
+
+      <!-- step navigation -->
+      <div class="step-nav">
+        <button class="step-btn" data-step="1">📋 1. Menu &amp; Location</button>
+        <button class="step-btn" data-step="2">🍵 2. Select Drinks</button>
+        <button class="step-btn" data-step="3">📝 3. Your Info &amp; Pickup</button>
+        <button class="step-btn" data-step="4">💳 4. Payment &amp; Submit</button>
+      </div>
+
+      <!-- PAGE 1 - menu display + location -->
+      <div id="page1" class="page active-page">
+        <h2>📸 Our Menu Boards</h2>
+        <div class="menu-grid">
+          <div class="menu-img-card">
+            <div class="placeholder-img" id="menuImgPlace1">🖼️ [ Menu Image 1 ]</div>
+            <p class="img-hint">⬅️ Replace image: edit img src below</p>
+            <img
+              id="customMenuImg1"
+              src="./assets/menu-board.jpg"
+              alt="menu board 1"
+              class="menu-img"
+            />
+          </div>
+        </div>
+
+        <div class="location-box">
+          📍 <strong>Pickup Location</strong><br />
+          <a
+            href="https://maps.app.goo.gl/kkhWPkTJMZiTJQuZ9?g_st=ic"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="maps-link"
+          >
+            📍 ThirtyTwo Coffee, Setapak KL → Open in Google Maps
+          </a>
+        </div>
+
+        <div class="flex-btns">
+          <button class="nav-btn" style="visibility: hidden"></button>
+          <button class="nav-btn next-btn" data-next="2">Next → Select Drinks</button>
+        </div>
+      </div>
+
+      <!-- PAGE 2 - multiple drinks selection -->
+      <div id="page2" class="page">
+        <h2>🍃 Build your order</h2>
+        <p>Choose any drink, customize hot/iced, quantity &amp; add‑ons.</p>
+        <div id="drinksContainer"></div>
+        <div class="cart-summary" id="orderSummaryPreview">💰 Total: RM 0.00</div>
+        <div class="flex-btns">
+          <button class="nav-btn prev-btn" data-prev="1">← Back</button>
+          <button class="nav-btn next-btn" data-next="3">Next → Your details</button>
+        </div>
+      </div>
+
+      <!-- PAGE 3 - customer info + pickup calendar (Mon/Wed/Fri, 6:00-9:00) -->
+      <div id="page3" class="page">
+        <h2>🧑‍🤝‍🧑 Your details &amp; pickup slot</h2>
+        <div class="form-group">
+          <label for="customerName">Full name *</label>
+          <input type="text" id="customerName" placeholder="e.g. Jamie Lee" autocomplete="name" />
+          <div class="error-msg" id="nameError"></div>
+        </div>
+        <div class="form-group">
+          <label for="customerPhone">Contact number *</label>
+          <input type="tel" id="customerPhone" placeholder="012-3456789" autocomplete="tel" />
+          <div class="error-msg" id="phoneError"></div>
+        </div>
+        <div class="form-group">
+          <label for="pickupDate">📅 Pickup date (Mon / Wed / Fri only) *</label>
+          <input type="date" id="pickupDate" min="" />
+          <div class="error-msg" id="pickupDateError"></div>
+        </div>
+        <div class="form-group">
+          <label for="pickupTime">⏰ Pickup time (6:00 AM – 9:00 AM) *</label>
+          <select id="pickupTime"></select>
+          <div class="error-msg" id="pickupTimeError"></div>
+        </div>
+        <div class="flex-btns">
+          <button class="nav-btn prev-btn" data-prev="2">← Back to Drinks</button>
+          <button class="nav-btn next-btn" data-next="4">Review &amp; Pay →</button>
+        </div>
+      </div>
+
+      <!-- PAGE 4 - order summary + QR + upload -->
+      <div id="page4" class="page">
+        <h2>📋 Confirm order &amp; payment</h2>
+        <div class="order-summary-card" id="finalOrderSummary"></div>
+        <div class="qr-block">
+          <p>
+            <strong>💵 Scan QR to pay (Bank / TNG)</strong><br />
+            Place your QR code image below ↓
+          </p>
+          <div id="qrImageSlot" style="text-align: center">
+            <img
+              id="merchantQrImg"
+              src="./assets/payment-qr.jpg"
+              alt="Payment QR"
+              class="qr-img"
+            />
+            <p class="img-hint">Scan the QR code above to pay.</p>
+          </div>
+        </div>
+        <div class="upload-area">
+          <label for="paymentScreenshot"><strong>📎 Upload payment screenshot / transfer proof *</strong></label>
+          <input type="file" id="paymentScreenshot" accept="image/jpeg,image/png,image/jpg" />
+          <div id="uploadPreview" class="upload-preview"></div>
+          <div class="error-msg" id="paymentError"></div>
+        </div>
+        <div class="flex-btns">
+          <button class="nav-btn prev-btn" data-prev="3">← Edit Info</button>
+          <button class="submit-btn" id="finalSubmitBtn" type="button">✔️ Place Order → Send to Telegram</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
